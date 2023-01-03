@@ -1,0 +1,15 @@
+.bannerItem {
+  max-width: 630px;
+  position: relative;
+}
+
+.bannerItem a {
+  text-decoration: none;
+  color: white;
+}
+
+.bannerItem h1 {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}

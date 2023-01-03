@@ -1,0 +1,36 @@
+.header {
+  height: 100px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  padding: 0 30px 0 30px;
+  overflow-x: hidden;
+  width: 97%;
+  z-index: 10;
+}
+
+.header ul {
+  margin: 0;
+  list-style: none;
+}
+
+.header .logo {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+}
+
+.categoryList {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  text-align: center;
+}
+
+.categoryList li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
