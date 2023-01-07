@@ -1,13 +1,18 @@
 .header {
   height: 100px;
   position: sticky;
+  background: #d2d2d2;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 5px 0px;
+  top: 0;
+  padding: 0 30px 0 30px;
+  z-index: 10;
+}
+
+.headerContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #d2d2d2;
-  padding: 0 30px 0 30px;
-  z-index: 10;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 5px 0px;
+  height: 100%;
 }
 
 .header ul {
