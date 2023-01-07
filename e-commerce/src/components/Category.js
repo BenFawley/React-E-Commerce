@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import classes from "./BannerImg.module.css";
+import classes from "./Category.module.css";
 
-const BannerImg = ({ id, name, src }) => {
+const Category = ({ id, name, src, styleName }) => {
   return (
-    <div className={classes.bannerItem}>
+    <div className={`${classes[styleName]}`}>
       <Link to={`/category/${id}`}>
         <img src={src} alt="Category item" />
         <h1>{name}</h1>
@@ -12,4 +12,4 @@ const BannerImg = ({ id, name, src }) => {
   );
 };
 
-export default BannerImg;
+export default Category;

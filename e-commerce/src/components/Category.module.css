@@ -1,0 +1,37 @@
+.bannerItem {
+  width: 33%;
+  max-width: 630px;
+  position: relative;
+}
+
+.bannerItem img {
+  width: 100%;
+}
+
+.bannerItem a {
+  text-decoration: none;
+  color: white;
+}
+
+.bannerItem h1 {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}
+
+.bannerItem:nth-child(2) {
+  margin: 0 10px 0 10px;
+}
+
+.bannerItem:hover {
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 800px) {
+  .bannerItem {
+    width: 100%;
+    max-width: 375px;
+    position: relative;
+    margin: 0px auto 10px auto !important;
+  }
+}

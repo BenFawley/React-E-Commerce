@@ -1,6 +1,10 @@
 .homebanner {
   display: flex;
   align-content: center;
-  gap: 20px;
   overflow-x: hidden;
+}
+@media screen and (max-width: 800px) {
+  .homebanner {
+    display: block;
+  }
 }

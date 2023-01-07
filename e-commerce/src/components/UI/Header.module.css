@@ -1,14 +1,15 @@
 .header {
   height: 100px;
-  position: fixed;
+  position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
+  background: #d2d2d2;
   padding: 0 30px 0 30px;
   overflow-x: hidden;
   width: 97%;
   z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 5px 0px;
 }
 
 .header ul {
