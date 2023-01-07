@@ -1,0 +1,21 @@
+.product {
+  width: 24%;
+}
+
+.product img {
+  width: 100%;
+}
+
+.product a {
+  text-decoration: none;
+}
+
+.product a:visited {
+  color: unset;
+}
+
+.productInfo {
+}
+
+.productDetials {
+}

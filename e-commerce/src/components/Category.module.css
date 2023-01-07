@@ -4,27 +4,54 @@
   position: relative;
 }
 
-.bannerItem img {
+.bannerItem img,
+.subCategory img {
   width: 100%;
 }
 
-.bannerItem a {
+.bannerItem a,
+.subCategory a {
   text-decoration: none;
   color: white;
 }
 
-.bannerItem h1 {
+.bannerItem h2 {
   position: absolute;
-  bottom: 20px;
-  left: 30px;
+  bottom: 0px;
+  left: 20px;
+  font-size: 32px;
 }
 
 .bannerItem:nth-child(2) {
   margin: 0 10px 0 10px;
 }
 
-.bannerItem:hover {
+.bannerItem:nth-child(3) h2,
+.subCategory:nth-child(1) h2,
+.subCategory:nth-child(6) h2 {
+  color: #00a0ee;
+}
+
+.bannerItem:hover,
+.subCategory:hover {
   opacity: 0.9;
+}
+
+.subCategory {
+  position: relative;
+  width: 24%;
+}
+
+.subCategory h2 {
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  font-size: 24px;
+}
+
+.subCategory:nth-child(1),
+.subCategory:nth-child(6) {
+  width: 48%;
 }
 
 @media screen and (max-width: 800px) {

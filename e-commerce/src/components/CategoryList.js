@@ -1,4 +1,4 @@
-import classes from "./CategoryList.js";
+import classes from "./CategoryList.module.css";
 import Category from "./Category.js";
 import Dresses from "../images/categories/dresses.jpg";
 import Womens from "../images/categories/womens.jpg";
@@ -9,49 +9,56 @@ import Accessories from "../images/categories/shirts.jpg";
 
 const categories = [
   {
-    id: "1",
+    id: "dresses",
     name: "Dresses",
     imgPath: Dresses,
   },
   {
-    id: "2",
+    id: "womens",
     name: "Womens",
     imgPath: Womens,
   },
   {
-    id: "3",
+    id: "footwear",
     name: "Footwear",
     imgPath: Footwear,
   },
   {
-    id: "4",
+    id: "coats",
     name: "Coats/Jackets",
     imgPath: Coats,
   },
   {
-    id: "5",
+    id: "tailored",
     name: "Tailored",
     imgPath: Tailored,
   },
   {
-    id: "6",
+    id: "accessories",
     name: "Accessories",
     imgPath: Accessories,
   },
 ];
 
 const CategoryList = () => {
-  return categories.map((category) => {
-    return (
-      <Category
-        key={category.id}
-        id={category.id}
-        name={category.name}
-        src={category.imgPath}
-        styleName="subCategory"
-      />
-    );
-  });
+  return (
+    <section className={classes.categoryWrapper}>
+      <h1 className={classes.sectionTitle}>Shop Range</h1>
+      <div className={classes.categoryList}>
+        {categories.map((category, idx) => {
+          return (
+            <Category
+              key={idx}
+              id={category.id}
+              name={category.name}
+              src={category.imgPath}
+              styleName="subCategory"
+            />
+          );
+        })}
+      </div>
+    </section>
+  );
 };
 
 export default CategoryList;

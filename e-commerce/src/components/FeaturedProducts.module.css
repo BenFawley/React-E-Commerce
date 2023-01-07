@@ -1,0 +1,21 @@
+.featuredWrapper {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.featuredWrapper h1 {
+  font-size: 30px;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+.featuredProducts ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  padding: 0;
+  flex-wrap: wrap;
+}

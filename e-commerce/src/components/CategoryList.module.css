@@ -1,0 +1,19 @@
+.categoryWrapper {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+.categoryList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: 30px;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
