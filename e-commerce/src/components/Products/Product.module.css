@@ -19,3 +19,9 @@
 
 .productDetials {
 }
+
+@media screen and (max-width: 800px) {
+  .product {
+    width: 48%;
+  }
+}

@@ -2,6 +2,7 @@
   display: flex;
   align-content: center;
   overflow-x: hidden;
+  /* margin-bottom: 80px; */
 }
 @media screen and (max-width: 800px) {
   .homebanner {

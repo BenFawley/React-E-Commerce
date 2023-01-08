@@ -1,6 +1,6 @@
-import HomeBanner from "../components/HomeBanner";
-import CategoryList from "../components/CategoryList";
-import FeaturedProducts from "../components/FeaturedProducts";
+import HomeBanner from "../components/UI/HomeBanner";
+import CategoryList from "../components/UI/CategoryList";
+import FeaturedProducts from "../components/UI/FeaturedProducts";
 
 const Home = () => {
   return (

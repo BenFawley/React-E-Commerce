@@ -1,8 +1,8 @@
 import classes from "./HomeBanner.module.css";
-import Category from "./Category";
-import Summer from "../images/categories/summer.jpg";
-import Winter from "../images/categories/winter.jpg";
-import Activewear from "../images/categories/activewear.jpg";
+import Category from "./HomePageCategory";
+import Summer from "../../images/categories/summer.jpg";
+import Winter from "../../images/categories/winter.jpg";
+import Activewear from "../../images/categories/activewear.jpg";
 
 const HomeBanner = () => {
   return (

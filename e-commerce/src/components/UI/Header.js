@@ -1,13 +1,14 @@
 import classes from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { uiAction } from "../../store/uiSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const dispatch = useDispatch();
-
+  const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const toggleCartHandler = () => {
     dispatch(uiAction.toggle());
   };
@@ -16,13 +17,12 @@ const Header = () => {
     <header className={classes.header}>
       <div className={classes.headerContent}>
         <div className={classes.logo}>
-          <h1>Logo</h1>
+          <Link to="/">
+            <h1>Logo</h1>
+          </Link>
         </div>
         <nav className={classes.navWrapper}>
           <ul className={classes.categoryList}>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
             <li>
               <NavLink to="/mens">Mens</NavLink>
             </li>
@@ -36,7 +36,9 @@ const Header = () => {
         </nav>
         <div className={classes.cartWrapper} onClick={toggleCartHandler}>
           <FontAwesomeIcon icon={faCartShopping} size="xl" inverse />
-          <span className={classes.quantity}>11</span>
+          {cartQuantity > 0 && (
+            <span className={classes.quantity}>{cartQuantity}</span>
+          )}
         </div>
       </div>
     </header>

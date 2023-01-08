@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout.js";
+import ProductDetails from "./components/Products/ProductDetails.js";
 import Home from "./pages/Home";
 
 const App = () => {
@@ -8,7 +9,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} exact />
         <Route path="/:categoryId" />
-        <Route path="/:categoryId/:productId" />
+        <Route path="/product/:productId" element={<ProductDetails />} />
       </Routes>
     </Layout>
   );

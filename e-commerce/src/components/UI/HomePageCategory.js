@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import classes from "./Category.module.css";
+import classes from "./HomePageCategory.module.css";
 
-const Category = ({ id, name, src, styleName }) => {
+const HomePageCategory = ({ id, name, src, styleName }) => {
   // const routingName = name.toLowerCase().trim().replace(/ +/g, "-");
 
   return (
@@ -9,9 +9,10 @@ const Category = ({ id, name, src, styleName }) => {
       <Link to={`/${id}`}>
         <img src={src} alt="Category item" />
         <h2>{name}</h2>
+        {/* <div className={classes.test}></div> */}
       </Link>
     </div>
   );
 };
 
-export default Category;
+export default HomePageCategory;

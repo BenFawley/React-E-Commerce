@@ -1,7 +1,6 @@
 .featuredWrapper {
   max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 0px auto;
   padding: 0 20px;
 }
 
@@ -18,4 +17,11 @@
   gap: 10px;
   padding: 0;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+  .featuredWrapper h1 {
+    font-size: 20px;
+    padding-left: 0px;
+  }
 }

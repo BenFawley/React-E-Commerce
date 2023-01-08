@@ -26,6 +26,12 @@
   margin: 0;
 }
 
+.logo a,
+.logo a:visited {
+  text-decoration: none;
+  color: unset;
+}
+
 .categoryList {
   display: flex;
   gap: 30px;
