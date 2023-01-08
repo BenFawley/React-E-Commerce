@@ -1,7 +1,17 @@
 import classes from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { uiAction } from "../../store/uiSlice";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const toggleCartHandler = () => {
+    dispatch(uiAction.toggle());
+  };
+
   return (
     <header className={classes.header}>
       <div className={classes.headerContent}>
@@ -24,7 +34,10 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <div className={classes.icons}>Placeholder</div>
+        <div className={classes.cartWrapper} onClick={toggleCartHandler}>
+          <FontAwesomeIcon icon={faCartShopping} size="xl" inverse />
+          <span className={classes.quantity}>11</span>
+        </div>
       </div>
     </header>
   );

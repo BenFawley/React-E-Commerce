@@ -38,3 +38,24 @@
   text-decoration: none;
   font-size: 20px;
 }
+
+.cartWrapper {
+  position: relative;
+}
+
+.quantity {
+  position: absolute;
+  top: -12px;
+  left: 14px;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+  font-size: 14px;
+  background-color: white;
+}
+
+.cartWrapper:hover {
+  cursor: pointer;
+}

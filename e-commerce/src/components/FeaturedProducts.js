@@ -1,5 +1,5 @@
 import classes from "./FeaturedProducts.module.css";
-import Product from "./Product";
+import Product from "./Products/Product";
 import image from "../images/categories/womens.jpg";
 
 const featuredProducts = [
