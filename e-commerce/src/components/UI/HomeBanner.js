@@ -9,7 +9,7 @@ const HomeBanner = () => {
     <div className={classes.homebanner}>
       <Category
         name="Summer Range"
-        id="swimwear"
+        id="summer"
         src={Summer}
         styleName="bannerItem"
       />
