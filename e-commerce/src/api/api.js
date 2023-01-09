@@ -1,7 +1,9 @@
 const FIREBASE_DOMAIN =
   "https://react-e-commerce-f5165-default-rtdb.europe-west1.firebasedatabase.app/";
 
-export const getProducts = async () => {
+// make the below function dynamic for each category then use useEffect to pull in the category name from the URL and use that to send the request when the category page is loaded. (add custom hook that takes in a callback)
+
+export const getProducts = async (id) => {
   const options = {
     method: "GET",
     headers: {
@@ -11,7 +13,7 @@ export const getProducts = async () => {
   };
 
   const response = await fetch(
-    "https://asos2.p.rapidapi.com/products/v2/list?limit=48&categoryId=6993&offset=0&store=COM&lang=en-GB&sizeSchema=UK&currency=GBP&sort=freshness&country=GB",
+    `https://asos2.p.rapidapi.com/products/v2/list?limit=48&categoryId=${id}&offset=0&store=COM&lang=en-GB&sizeSchema=UK&currency=GBP&sort=freshness&country=GB`,
     options
   );
   const data = await response.json();
@@ -21,6 +23,8 @@ export const getProducts = async () => {
   }
 
   const products = [...data.products];
+
+  console.log(products)
 
   return products;
 };

@@ -5,6 +5,7 @@ import ProductDetails from "./components/Products/ProductDetails.js";
 import Home from "./pages/Home";
 
 const App = () => {
+  // Set up the nested routes for category
   return (
     <Layout>
       <Routes>
