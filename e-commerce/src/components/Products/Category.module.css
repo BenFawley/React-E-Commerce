@@ -1,0 +1,12 @@
+.productList {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.productList ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  gap: 1%;
+}

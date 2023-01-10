@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import classes from "./HomePageCategory.module.css";
 
-const HomePageCategory = ({ id, name, src, styleName }) => {
+const HomePageCategory = ({ id, name, src, styleName, path }) => {
   // const routingName = name.toLowerCase().trim().replace(/ +/g, "-");
 
   return (

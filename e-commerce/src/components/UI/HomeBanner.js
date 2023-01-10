@@ -1,5 +1,5 @@
 import classes from "./HomeBanner.module.css";
-import Category from "./HomePageCategory";
+import HomePageCategory from "./HomePageCategory";
 import Summer from "../../images/categories/summer.jpg";
 import Winter from "../../images/categories/winter.jpg";
 import Activewear from "../../images/categories/activewear.jpg";
@@ -7,19 +7,19 @@ import Activewear from "../../images/categories/activewear.jpg";
 const HomeBanner = () => {
   return (
     <div className={classes.homebanner}>
-      <Category
+      <HomePageCategory
         name="Summer Range"
         id="summer"
         src={Summer}
         styleName="bannerItem"
       />
-      <Category
+      <HomePageCategory
         name="Activewear"
         id="activewear"
         src={Activewear}
         styleName="bannerItem"
       />
-      <Category
+      <HomePageCategory
         name="Winter Range"
         id="winter"
         src={Winter}

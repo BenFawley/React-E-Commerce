@@ -22,9 +22,9 @@ export const getProducts = async (id) => {
     throw new Error(data.message || "Could not fetch products.");
   }
 
-  const products = [...data.products];
+  const products = data.products;
 
-  console.log(products)
+  // console.log(products);
 
   return products;
 };

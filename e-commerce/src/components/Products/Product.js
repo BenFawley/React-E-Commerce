@@ -1,12 +1,21 @@
 import classes from "./Product.module.css";
 import { Link } from "react-router-dom";
 
-const Product = ({ id, name, description, price, imgSrc, colour }) => {
+const Product = ({
+  id,
+  name,
+  description,
+  price,
+  imgSrc,
+  colour,
+  category,
+}) => {
+  const imgPath = `https://${imgSrc}`;
   return (
     <li className={classes.product}>
-      <Link to={`/${id}`}>
+      <Link to={`/${category}/${id}`}>
         <div className={classes.productInfo}>
-          <img src={imgSrc} alt="product" />
+          <img src={imgPath} alt="product" />
           <div className={classes.description}>
             <p>{description}</p>
           </div>

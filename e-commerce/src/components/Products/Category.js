@@ -1,14 +1,45 @@
 import classes from "./Category.module.css";
 import { useEffect, useState } from "react";
-import productSlice from "../../store/productSlice";
 import { getProducts } from "../../api/api";
+import { useParams } from "react-router-dom";
+import Product from "./Product";
 
 const Category = () => {
-  // pull the category id in from the URL and pass it below to get the products
+  const [productList, setProductList] = useState([]);
+  let { categoryId } = useParams();
+
   useEffect(() => {
-    getProducts(6993);
-  }, []);
-  return <div>Category</div>;
+    const fetchProducts = async () => {
+      const products = await getProducts(categoryId);
+      setProductList(products);
+    };
+
+    fetchProducts();
+  }, [categoryId]);
+  return (
+    <div className={classes.productList}>
+      {productList.length > 0 ? (
+        <ul>
+          {productList.map((product) => {
+            return (
+              <Product
+                key={product.productCode}
+                id={product.productCode}
+                name={product.name}
+                description={"test"}
+                price={product.price.value}
+                imgSrc={product.imageUrl}
+                colour={product.colour && product.colour}
+                category={categoryId}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <p>No products could be found...</p>
+      )}
+    </div>
+  );
 };
 
 export default Category;
