@@ -1,32 +1,48 @@
 import classes from "./Category.module.css";
-import { useEffect, useState } from "react";
-import { getProducts } from "../../api/api";
 import { useParams } from "react-router-dom";
 import Product from "./Product";
+import { useGetCategoryProductsQuery } from "../../store/apiSlice";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Category = () => {
-  const [productList, setProductList] = useState([]);
   let { categoryId } = useParams();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const products = await getProducts(categoryId);
-      setProductList(products);
-    };
+  const {
+    isLoading,
+    data: productList,
+    error,
+  } = useGetCategoryProductsQuery(categoryId);
 
-    fetchProducts();
-  }, [categoryId]);
+  console.log(productList);
+
+  if (isLoading) {
+    return (
+      <div className={classes.centered}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={classes.centered}>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.productList}>
-      {productList.length > 0 ? (
+      <h1></h1>
+      {productList && (
         <ul>
-          {productList.map((product) => {
+          {productList.products.map((product) => {
             return (
               <Product
                 key={product.productCode}
                 id={product.productCode}
                 name={product.name}
-                description={"test"}
+                description={product.name}
                 price={product.price.value}
                 imgSrc={product.imageUrl}
                 colour={product.colour && product.colour}
@@ -35,8 +51,6 @@ const Category = () => {
             );
           })}
         </ul>
-      ) : (
-        <p>No products could be found...</p>
       )}
     </div>
   );

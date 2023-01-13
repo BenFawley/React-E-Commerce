@@ -11,3 +11,10 @@ body {
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
 }
+.centered {
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

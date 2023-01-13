@@ -9,7 +9,7 @@ import HomePageCategory from "./HomePageCategory.js";
 
 const categories = [
   {
-    id: "dresses",
+    id: 8799,
     name: "Dresses",
     url: "dresses",
     imgPath: Dresses,
@@ -27,13 +27,13 @@ const categories = [
     imgPath: Footwear,
   },
   {
-    id: "coats",
+    id: 3606,
     name: "Coats/Jackets",
     url: "coats-jackets",
     imgPath: Coats,
   },
   {
-    id: "tailored",
+    id: 5678,
     name: "Tailored",
     url: "tailored",
     imgPath: Tailored,

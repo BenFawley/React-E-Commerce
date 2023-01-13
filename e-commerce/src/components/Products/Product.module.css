@@ -19,9 +19,37 @@
 }
 
 .productInfo {
+  position: relative;
 }
 
-.productDetials {
+.product .description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  color: #fff;
+  padding: 3% 5% 0;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: all 0.8s;
+  overflow: hidden;
+  background: rgb(0, 0, 0, 0.6);
+  height: 99%;
+}
+
+.product .description:hover {
+  opacity: 1;
+}
+
+.productDetails {
+  position: relative;
+}
+
+.productDetails h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
 }
 
 @media screen and (max-width: 800px) {
