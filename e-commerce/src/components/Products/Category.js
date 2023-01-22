@@ -13,8 +13,6 @@ const Category = () => {
     error,
   } = useGetCategoryProductsQuery(categoryId);
 
-  console.log(productList);
-
   if (isLoading) {
     return (
       <div className={classes.centered}>
@@ -33,24 +31,26 @@ const Category = () => {
 
   return (
     <div className={classes.productList}>
-      <h1></h1>
       {productList && (
-        <ul>
-          {productList.products.map((product) => {
-            return (
-              <Product
-                key={product.productCode}
-                id={product.productCode}
-                name={product.name}
-                description={product.name}
-                price={product.price.value}
-                imgSrc={product.imageUrl}
-                colour={product.colour && product.colour}
-                category={categoryId}
-              />
-            );
-          })}
-        </ul>
+        <div className={classes.productList}>
+          <h1>{productList.categoryName}</h1>
+          <ul>
+            {productList.products.map((product) => {
+              return (
+                <Product
+                  key={product.productCode}
+                  id={product.id}
+                  name={product.name}
+                  description={product.name}
+                  price={product.price.current.value}
+                  imgSrc={product.imageUrl}
+                  colour={product.colour && product.colour}
+                  category={categoryId}
+                />
+              );
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );

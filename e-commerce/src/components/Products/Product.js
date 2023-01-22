@@ -9,10 +9,11 @@ const Product = ({
   imgSrc,
   colour,
   category,
+  onClick,
 }) => {
   const imgPath = `https://${imgSrc}`;
   return (
-    <li className={classes.product}>
+    <li className={classes.product} onClick={onClick}>
       <Link to={`/${category}/${id}`}>
         <div className={classes.productInfo}>
           <img src={imgPath} alt="product" />
@@ -22,7 +23,7 @@ const Product = ({
         </div>
         <div className={classes.productDetails}>
           <h3>{name}</h3>
-          <p>{price}</p>
+          <p className={classes.price}>£{price}</p>
         </div>
       </Link>
     </li>

@@ -14,7 +14,18 @@ export const productsApi = createApi({
         },
       }),
     }),
+    getProductDetails: builder.query({
+      query: (id) => ({
+        url: `products/v3/detail?id=${id}&currency=GBP&sizeSchema=UK&store=COM&lang=en-GB`,
+        headers: {
+          "X-RapidAPI-Key":
+            "951ae0ae03msh15b713d7db634b9p1a7e26jsne6ccf99148eb",
+          "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetCategoryProductsQuery } = productsApi;
+export const { useGetCategoryProductsQuery, useGetProductDetailsQuery } =
+  productsApi;

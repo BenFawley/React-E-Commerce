@@ -47,9 +47,16 @@
 }
 
 .productDetails h3 {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #333;
+  width: 100%;
+}
+
+.productDetails .price {
+  font-weight: 500;
+  color: #333;
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {

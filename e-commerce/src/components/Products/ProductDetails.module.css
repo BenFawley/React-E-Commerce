@@ -1,2 +1,45 @@
 .productWrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.galleryWrapper {
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 660px;
+}
+
+.smallGallery img {
+  display: block;
+  width: 50%;
+  max-width: 50px;
+  margin: 0 20px 20px;
+}
+
+.largeGallery {
+  height: 800px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+.largeGallery::-webkit-scrollbar {
+  display: none;
+}
+
+.largeGallery img {
+  display: block;
+  margin: 0 0 10px;
+  width: 100%;
+}
+
+.productDetails {
+  width: 50%;
+}
+.productName {
+  text-transform: capitalize;
 }
