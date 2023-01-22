@@ -56,32 +56,31 @@ const ProductDetails = () => {
       </div>
       <div className={classes.productDetails}>
         <h1 className={classes.productName}>{product.name}</h1>
-        <p>£{product.price.current.value}</p>
-        <div>
-          <p>Size:</p>
-          {product.variants.length > 0 && (
-            <select id="sizes">
-              <option value="placeholder">-- Please Select --</option>
-              {product.variants.map((option) => {
-                return (
-                  <option value={option.brandSize}>{option.brandSize}</option>
-                );
-              })}
-            </select>
-          )}
+        <p className={classes.price}>£{product.price.current.value}</p>
+        <h3>Size:</h3>
+        <div className={classes.sizeOptions}>
+          {product.variants.length > 0 &&
+            product.variants.map((option) => {
+              return <div className={classes.size}>{option.brandSize}</div>;
+            })}
         </div>
-        <button onClick={addToCartHandler}>Add to Cart</button>
+        <button className={classes.addToCart} onClick={addToCartHandler}>
+          Add to Cart
+        </button>
         <div className={classes.accordion}>
+          <h3 className={classes.accordionTitle}> Description</h3>
           <p className={classes.accordionContent}>
             {removeTags(product.description)}
           </p>
         </div>
         <div className={classes.accordion}>
+          <h3 className={classes.accordionTitle}>About Me</h3>
           <p className={classes.accordionContent}>
             {removeTags(product.info.aboutMe)}
           </p>
         </div>
         <div className={classes.accordion}>
+          <h3 onClickclassName={classes.accordionTitle}>Size & Fit</h3>
           <p className={classes.accordionContent}>
             {removeTags(product.info.sizeAndFit)}
           </p>
