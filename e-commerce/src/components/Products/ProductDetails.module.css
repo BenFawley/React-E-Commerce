@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   max-width: 1000px;
-  margin: 40px auto 0;
+  margin: 0 auto;
+  padding: 40px 0 0;
 }
 
 .galleryWrapper {
@@ -39,7 +40,53 @@
 
 .productDetails {
   width: 50%;
+  padding: 40px 15px;
 }
 .productName {
   text-transform: capitalize;
+}
+
+.addToCart {
+  background: #e31442;
+  color: white;
+  padding: 10px 35px;
+  font-size: 18px;
+  border: 2px solid #e31442;
+  border-radius: 10px;
+  margin: 40px 0 20px;
+}
+
+.addToCart:hover {
+  cursor: pointer;
+  background: white;
+  color: #e31442;
+}
+
+.sizeOptions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.size {
+  background: #fff;
+  border: 2px solid #d2d2d2;
+  padding: 5px;
+  width: 30px;
+  text-align: center;
+}
+
+.size:hover {
+  border: 2px solid #e31442;
+  cursor: pointer;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: bold;
+  color: gray;
+}
+
+.productDetails h3 {
+  font-size: 17px;
 }
