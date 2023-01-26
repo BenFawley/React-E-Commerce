@@ -1,0 +1,48 @@
+.accordionTitle {
+  position: relative;
+  max-width: 160px;
+}
+
+.accordionTitle:hover {
+  cursor: pointer;
+}
+
+.accordionTitle::before {
+  content: "";
+  background: #333;
+  height: 2px;
+  width: 14px;
+  position: absolute;
+  right: -6px;
+  top: 8px;
+}
+
+.accordionTitle::after {
+  content: "";
+  background: #333;
+  height: 14px;
+  width: 2px;
+  position: absolute;
+  right: 0px;
+  top: 2px;
+  transition: 0.3s all;
+}
+
+.accordion.active .accordionTitle::after {
+  transform: rotate(90deg);
+}
+
+.accordion.active .accordionContent {
+  line-height: 1.5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: #000;
+}
+
+.accordionContent {
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  line-height: 0;
+  padding: 0 1em;
+  color: transparent;
+}

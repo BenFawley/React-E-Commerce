@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
+import Accordion from "../UI/Accordion";
 
 const ProductDetails = () => {
   let { productId } = useParams();
@@ -67,24 +68,21 @@ const ProductDetails = () => {
         <button className={classes.addToCart} onClick={addToCartHandler}>
           Add to Cart
         </button>
-        <div className={classes.accordion}>
-          <h3 className={classes.accordionTitle}> Description</h3>
-          <p className={classes.accordionContent}>
-            {removeTags(product.description)}
-          </p>
-        </div>
-        <div className={classes.accordion}>
-          <h3 className={classes.accordionTitle}>About Me</h3>
-          <p className={classes.accordionContent}>
-            {removeTags(product.info.aboutMe)}
-          </p>
-        </div>
-        <div className={classes.accordion}>
-          <h3 onClickclassName={classes.accordionTitle}>Size & Fit</h3>
-          <p className={classes.accordionContent}>
-            {removeTags(product.info.sizeAndFit)}
-          </p>
-        </div>
+        <Accordion
+          title="Description"
+          content={removeTags(product.description)}
+        />
+        <Accordion
+          title="About Me"
+          content={removeTags(product.info.aboutMe)}
+        />
+
+        {product.info.sizeAndFit && (
+          <Accordion
+            title="Size & Fit"
+            content={removeTags(product.info.sizeAndFit)}
+          />
+        )}
       </div>
     </div>
   );
