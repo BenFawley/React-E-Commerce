@@ -13,6 +13,8 @@ const Cart = (props) => {
   const cart = useSelector((state) => state.cart);
   const visible = useSelector((state) => state.ui.cartIsVisible);
 
+  console.log(cart);
+
   useEffect(() => {
     if (visible) {
       setShowCart(true);
@@ -39,9 +41,9 @@ const Cart = (props) => {
         emptyCart
       ) : (
         <ul>
-          {/* {cartItems.map((item)=>{
-            return 
-        })} */}
+          {cart.items.map((item) => {
+            return <li>{item.name}</li>;
+          })}
         </ul>
       )}
     </Card>

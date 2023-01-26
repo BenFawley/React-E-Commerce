@@ -25,7 +25,7 @@
   position: absolute;
   right: 0px;
   top: 2px;
-  transition: 0.3s all;
+  transition: 0.5s all;
 }
 
 .accordion.active .accordionTitle::after {

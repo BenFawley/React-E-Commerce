@@ -2,9 +2,12 @@ import { useParams } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
+import { useDispatch } from "react-redux";
+import cartSlice, { cartActions } from "../../store/cartSlice";
 
 const ProductDetails = () => {
   let { productId } = useParams();
+  const dispatch = useDispatch();
 
   const {
     isLoading,
@@ -25,12 +28,23 @@ const ProductDetails = () => {
     return str.replace(/(<([^>]+)>)/gi, " ");
   };
 
-  const addToCartHandler = () => {};
+  const addToCartHandler = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        id: product.id,
+        price: product.price.current.value,
+        quantity: 1,
+        name: product.name,
+        // product.name is returning undefined
+      })
+    );
+  };
 
   return (
     <div className={classes.productWrapper}>
       <div className={classes.galleryWrapper}>
         <div className={classes.smallGallery}>
+          {/* add gallery component */}
           {product.media.images.map((image, idx) => {
             return (
               <img
@@ -58,9 +72,9 @@ const ProductDetails = () => {
       <div className={classes.productDetails}>
         <h1 className={classes.productName}>{product.name}</h1>
         <p className={classes.price}>£{product.price.current.value}</p>
-        <h3>Size:</h3>
+        {product.variants.length > 1 && <h3>Size:</h3>}
         <div className={classes.sizeOptions}>
-          {product.variants.length > 0 &&
+          {product.variants.length > 1 &&
             product.variants.map((option) => {
               return <div className={classes.size}>{option.brandSize}</div>;
             })}

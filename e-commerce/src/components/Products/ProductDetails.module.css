@@ -1,6 +1,7 @@
 .productWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 0 0;
@@ -53,7 +54,7 @@
   font-size: 18px;
   border: 2px solid #e31442;
   border-radius: 10px;
-  margin: 40px 0 20px;
+  margin: 10px 0 20px;
 }
 
 .addToCart:hover {
