@@ -4,18 +4,19 @@ import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
 import { useDispatch } from "react-redux";
 import cartSlice, { cartActions } from "../../store/cartSlice";
+import { useState, useRef } from "react";
 
 const ProductDetails = () => {
   let { productId } = useParams();
   const dispatch = useDispatch();
+  const [sizeError, setSizeError] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("");
 
   const {
     isLoading,
     data: product,
     error,
   } = useGetProductDetailsQuery(productId);
-
-  console.log(product);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -29,15 +30,27 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch(
-      cartActions.addItemToCart({
-        id: product.id,
-        price: product.price.current.value,
-        quantity: 1,
-        name: product.name,
-        // product.name is returning undefined
-      })
-    );
+    if (!selectedSize) {
+      setSizeError(true);
+      return;
+    } else {
+      dispatch(
+        cartActions.addItemToCart({
+          id: product.id,
+          price: product.price.current.value,
+          quantity: 1,
+          name: product.name,
+          imgURL: product.media.images.map((image) => image.url),
+          size: selectedSize,
+        })
+      );
+      setSelectedSize("");
+    }
+  };
+
+  const handleSizeSelection = (e) => {
+    setSizeError(false);
+    setSelectedSize(e.target.dataset.size);
   };
 
   return (
@@ -76,9 +89,18 @@ const ProductDetails = () => {
         <div className={classes.sizeOptions}>
           {product.variants.length > 1 &&
             product.variants.map((option) => {
-              return <div className={classes.size}>{option.brandSize}</div>;
+              return (
+                <div
+                  className={classes.size}
+                  onClick={handleSizeSelection}
+                  data-size={option.brandSize}
+                >
+                  {option.brandSize}
+                </div>
+              );
             })}
         </div>
+        {sizeError && <p className={classes.error}>Please select a size</p>}
         <button className={classes.addToCart} onClick={addToCartHandler}>
           Add to Cart
         </button>

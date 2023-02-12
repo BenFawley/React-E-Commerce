@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import classes from "./Cart.module.css";
 import Card from "../UI/Card";
+import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +13,6 @@ const Cart = (props) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const visible = useSelector((state) => state.ui.cartIsVisible);
-
-  console.log(cart);
 
   useEffect(() => {
     if (visible) {
@@ -42,7 +41,16 @@ const Cart = (props) => {
       ) : (
         <ul>
           {cart.items.map((item) => {
-            return <li>{item.name}</li>;
+            return (
+              <CartItem
+                id={item.id}
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                quantity={item.quantity}
+                imgURL={item.imgURL}
+              />
+            );
           })}
         </ul>
       )}

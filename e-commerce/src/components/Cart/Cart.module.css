@@ -19,3 +19,8 @@
 .close:hover {
   cursor: pointer;
 }
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
