@@ -1,14 +1,15 @@
 import classes from "./CartItem.module.css";
-import cartSlice, { cartActions } from "../../store/cartSlice";
+import { cartActions } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 
-const CartItem = ({ id, name, price, quantity, imgURL }) => {
+const CartItem = ({ id, name, price, quantity, imgURL, size }) => {
   const dispatch = useDispatch();
 
   const addItem = () => {
     dispatch(
       cartActions.addItemToCart({
         id: id,
+        price: price,
       })
     );
   };
@@ -24,13 +25,17 @@ const CartItem = ({ id, name, price, quantity, imgURL }) => {
         src={`https://${imgURL[0]}`}
         alt="product"
       />
-      <p>{name}</p>
+      <p>
+        {name} <strong>{size && `(${size})`}</strong>
+      </p>
       <div className={classes.quantity}>
         <div className={classes.minus} onClick={removeItem}></div>
         <p>{quantity}</p>
         <div className={classes.plus} onClick={addItem}></div>
       </div>
-      <p>{`£${price}`}</p>
+      <p>
+        <strong>{`£${price}`}</strong>
+      </p>
     </li>
   );
 };

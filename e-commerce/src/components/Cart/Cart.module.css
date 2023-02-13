@@ -24,3 +24,33 @@
   list-style: none;
   padding: 0;
 }
+
+.cartTotal {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: right;
+}
+
+.clearCart {
+  color: red;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.checkoutWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.checkout {
+  padding: 10px 25px;
+  font-weight: bold;
+  background: #e31442;
+  border: 1px solid #e31442;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  text-transform: uppercase;
+}

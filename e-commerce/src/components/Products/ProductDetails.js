@@ -3,14 +3,15 @@ import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
 import { useDispatch } from "react-redux";
-import cartSlice, { cartActions } from "../../store/cartSlice";
-import { useState, useRef } from "react";
+import { cartActions } from "../../store/cartSlice";
+import { useState } from "react";
 
 const ProductDetails = () => {
   let { productId } = useParams();
   const dispatch = useDispatch();
   const [sizeError, setSizeError] = useState(false);
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [active, setActive] = useState(false);
 
   const {
     isLoading,
@@ -19,7 +20,7 @@ const ProductDetails = () => {
   } = useGetProductDetailsQuery(productId);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className={classes.loading}>Loading...</p>;
   }
 
   const removeTags = (str) => {
@@ -30,27 +31,29 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = () => {
-    if (!selectedSize) {
+    if (selectedSize === null && product.variants.length > 1) {
       setSizeError(true);
       return;
     } else {
       dispatch(
         cartActions.addItemToCart({
-          id: product.id,
+          id: selectedSize ? `${product.id}-${selectedSize}` : product.id,
           price: product.price.current.value,
           quantity: 1,
           name: product.name,
           imgURL: product.media.images.map((image) => image.url),
-          size: selectedSize,
+          size: selectedSize ? selectedSize : null,
         })
       );
-      setSelectedSize("");
+      setSelectedSize(null);
     }
   };
 
   const handleSizeSelection = (e) => {
     setSizeError(false);
-    setSelectedSize(e.target.dataset.size);
+    e.target.dataset.size === selectedSize
+      ? setSelectedSize("")
+      : setSelectedSize(e.target.dataset.size);
   };
 
   return (
@@ -91,7 +94,10 @@ const ProductDetails = () => {
             product.variants.map((option) => {
               return (
                 <div
-                  className={classes.size}
+                  key={option.brandSize}
+                  className={`${classes.size} ${
+                    selectedSize === option.brandSize ? classes.active : ""
+                  }`}
                   onClick={handleSizeSelection}
                   data-size={option.brandSize}
                 >

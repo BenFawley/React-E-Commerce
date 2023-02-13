@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import classes from "./Cart.module.css";
 import Card from "../UI/Card";
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiAction } from "../../store/uiSlice";
+import { cartActions } from "../../store/cartSlice";
 
 const Cart = (props) => {
   const [showCart, setShowCart] = useState(false);
@@ -22,6 +22,10 @@ const Cart = (props) => {
 
   const closeCartHandler = () => {
     dispatch(uiAction.toggle());
+  };
+
+  const clearCartHandler = () => {
+    dispatch(cartActions.clearCart());
   };
 
   const emptyCart = <p>You have no items in the cart.</p>;
@@ -49,10 +53,26 @@ const Cart = (props) => {
                 price={item.price}
                 quantity={item.quantity}
                 imgURL={item.imgURL}
+                size={item.size}
               />
             );
           })}
         </ul>
+      )}
+      {cart.totalQuantity > 0 && (
+        <>
+          <div className={classes.cartTotal}>
+            <p>{`Total: £${cart.totalPrice}`}</p>
+          </div>
+          <div className={classes.checkoutWrapper}>
+            <p className={classes.clearCart} onClick={clearCartHandler}>
+              Clear cart
+            </p>
+            <button type="button" className={classes.checkout}>
+              Checkout
+            </button>
+          </div>
+        </>
       )}
     </Card>
   );
