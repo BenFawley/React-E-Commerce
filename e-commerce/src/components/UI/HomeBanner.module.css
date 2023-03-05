@@ -1,9 +1,11 @@
 .homebanner {
-  display: flex;
-  align-content: center;
-  overflow-x: hidden;
-  /* margin-bottom: 80px; */
+  background-image: url("../../images/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
 }
+
 @media screen and (max-width: 800px) {
   .homebanner {
     display: block;

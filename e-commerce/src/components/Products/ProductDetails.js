@@ -5,6 +5,7 @@ import Accordion from "../UI/Accordion";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cartSlice";
 import { useState } from "react";
+import { uiAction } from "../../store/uiSlice";
 
 const ProductDetails = () => {
   let { productId } = useParams();
@@ -45,6 +46,7 @@ const ProductDetails = () => {
           size: selectedSize ? selectedSize : null,
         })
       );
+      dispatch(uiAction.toggle());
       setSelectedSize(null);
     }
   };

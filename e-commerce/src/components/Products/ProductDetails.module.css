@@ -48,11 +48,11 @@
 }
 
 .addToCart {
-  background: #e31442;
+  background: #0098db;
   color: white;
   padding: 10px 35px;
   font-size: 18px;
-  border: 2px solid #e31442;
+  border: 2px solid #0098db;
   border-radius: 10px;
   margin: 10px 0 20px;
 }
@@ -60,7 +60,7 @@
 .addToCart:hover {
   cursor: pointer;
   background: white;
-  color: #e31442;
+  color: #0098db;
 }
 
 .sizeOptions {
@@ -81,7 +81,7 @@
 
 .size:hover,
 .active {
-  border: 2px solid #e31442;
+  border: 2px solid #0098db;
   cursor: pointer;
 }
 

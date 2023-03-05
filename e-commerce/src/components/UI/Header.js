@@ -1,7 +1,7 @@
 import classes from "./Header.module.css";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { uiAction } from "../../store/uiSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -35,7 +35,7 @@ const Header = () => {
           </ul>
         </nav>
         <div className={classes.cartWrapper} onClick={toggleCartHandler}>
-          <FontAwesomeIcon icon={faCartShopping} size="xl" inverse />
+          <FontAwesomeIcon icon={faShoppingBag} size="xl" inverse />
           {cartQuantity > 0 && (
             <span className={classes.quantity}>{cartQuantity}</span>
           )}

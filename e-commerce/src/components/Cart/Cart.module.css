@@ -47,10 +47,16 @@
 .checkout {
   padding: 10px 25px;
   font-weight: bold;
-  background: #e31442;
-  border: 1px solid #e31442;
+  background: #0098db;
+  border: 1px solid #0098db;
   color: white;
   cursor: pointer;
   border-radius: 10px;
   text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.checkout:hover {
+  color: #0098db;
+  background: white;
 }
