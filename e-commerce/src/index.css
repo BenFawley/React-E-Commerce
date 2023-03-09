@@ -12,6 +12,10 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+#root {
+  overflow-x: hidden;
+}
+
 html {
   height: 100%;
 }

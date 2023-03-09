@@ -14,7 +14,7 @@ const Product = ({
   const imgPath = `https://${imgSrc}`;
   return (
     <li className={classes.product} onClick={onClick}>
-      <Link to={`/${category}/${id}`}>
+      <Link to={`/${id}`}>
         <div className={classes.productInfo}>
           <img src={imgPath} alt="product" />
           <div className={classes.description}>

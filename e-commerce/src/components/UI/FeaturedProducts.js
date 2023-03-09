@@ -1,6 +1,8 @@
 import classes from "./FeaturedProducts.module.css";
 import Product from "../Products/Product";
 import image from "../../images/categories/womens.jpg";
+import { useGetFeaturedProductsQuery } from "../../store/apiSlice";
+import LoadingSpinner from "./LoadingSpinner";
 
 const featuredProducts = [
   {
@@ -34,20 +36,40 @@ const featuredProducts = [
 ];
 
 const FeaturedProducts = () => {
+  const { isLoading, data: productList, error } = useGetFeaturedProductsQuery();
+
+  console.log(productList);
+
+  if (isLoading) {
+    return (
+      <div className={classes.centered}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={classes.centered}>
+        <p>{error}</p>
+      </div>
+    );
+  }
   return (
     <section className={classes.featuredWrapper}>
       <h1>New Releases</h1>
       <div className={classes.featuredProducts}>
         <ul>
-          {featuredProducts.map((product) => {
+          {productList.products.map((product) => {
             return (
               <Product
-                key={product.id}
+                key={product.productCode}
                 id={product.id}
                 name={product.name}
-                description={product.description}
-                price={product.price}
-                imgSrc={image}
+                description={product.name}
+                price={product.price.current.value}
+                imgSrc={product.imageUrl}
+                colour={product.colour && product.colour}
               />
             );
           })}

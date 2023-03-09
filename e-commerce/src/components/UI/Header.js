@@ -18,27 +18,37 @@ const Header = () => {
       <div className={classes.headerContent}>
         <div className={classes.logo}>
           <Link to="/">
-            <h1>Logo</h1>
+            <h1>
+              Apparel<span>Store</span>
+            </h1>
           </Link>
         </div>
         <nav className={classes.navWrapper}>
           <ul className={classes.categoryList}>
             <li>
-              <NavLink to="/mens">Mens</NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/womens">Womens</NavLink>
+              <NavLink to={"/" + 16691}>Men</NavLink>
             </li>
             <li>
-              <NavLink to="/activewear">Activewear</NavLink>
+              <NavLink to={"/" + 16661}>Womens</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/" + 4209}>Footwear</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/" + 7046}>Sale</NavLink>
             </li>
           </ul>
         </nav>
-        <div className={classes.cartWrapper} onClick={toggleCartHandler}>
-          <FontAwesomeIcon icon={faShoppingBag} size="xl" inverse />
-          {cartQuantity > 0 && (
-            <span className={classes.quantity}>{cartQuantity}</span>
-          )}
+        <div className={classes.iconWrapper}>
+          <div className={classes.cartWrapper} onClick={toggleCartHandler}>
+            <FontAwesomeIcon icon={faShoppingBag} size="xl" />
+            {cartQuantity > 0 && (
+              <span className={classes.quantity}>{cartQuantity}</span>
+            )}
+          </div>
         </div>
       </div>
     </header>
