@@ -26,19 +26,45 @@ const Header = () => {
         <nav className={classes.navWrapper}>
           <ul className={classes.categoryList}>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/" + 16691}>Men</NavLink>
+              <NavLink
+                to={"/" + 16691}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Men
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/" + 16661}>Womens</NavLink>
+              <NavLink
+                to={"/" + 16661}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Womens
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/" + 4209}>Footwear</NavLink>
+              <NavLink
+                to={"/" + 4209}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Footwear
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/" + 7046}>Sale</NavLink>
+              <NavLink
+                to={"/" + 7046}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Sale
+              </NavLink>
             </li>
           </ul>
         </nav>

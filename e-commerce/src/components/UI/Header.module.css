@@ -47,13 +47,18 @@
   font-size: 20px;
 }
 
+.categoryList li a:hover,
+.categoryList li a.active {
+  color: #0098db;
+}
+
 .cartWrapper {
   position: relative;
 }
 
 .quantity {
   position: absolute;
-  top: -12px;
+  top: -7px;
   left: 14px;
   color: #0098db;
   border: 2px solid #0098db;

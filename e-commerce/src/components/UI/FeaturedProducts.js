@@ -1,66 +1,21 @@
 import classes from "./FeaturedProducts.module.css";
 import Product from "../Products/Product";
-import image from "../../images/categories/womens.jpg";
-import { useGetFeaturedProductsQuery } from "../../store/apiSlice";
-import LoadingSpinner from "./LoadingSpinner";
-
-const featuredProducts = [
-  {
-    id: "1",
-    name: "Test",
-    description: "",
-    price: 22,
-    imgSrc: "",
-  },
-  {
-    id: "2",
-    name: "Test",
-    description: "",
-    price: 22,
-    imgSrc: "",
-  },
-  {
-    id: "3",
-    name: "Test",
-    description: "",
-    price: 22,
-    imgSrc: "",
-  },
-  {
-    id: "4",
-    name: "Test",
-    description: "",
-    price: 22,
-    imgSrc: "",
-  },
-];
+import { json } from "react-router-dom";
+import store from "../../store/redux.js";
+import {
+  productsApi,
+  useGetFeaturedProductsQuery,
+} from "../../store/apiSlice.js";
 
 const FeaturedProducts = () => {
-  const { isLoading, data: productList, error } = useGetFeaturedProductsQuery();
+  const { data } = useGetFeaturedProductsQuery();
 
-  console.log(productList);
-
-  if (isLoading) {
-    return (
-      <div className={classes.centered}>
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={classes.centered}>
-        <p>{error}</p>
-      </div>
-    );
-  }
   return (
     <section className={classes.featuredWrapper}>
       <h1>New Releases</h1>
       <div className={classes.featuredProducts}>
         <ul>
-          {productList.products.map((product) => {
+          {data.products.map((product) => {
             return (
               <Product
                 key={product.productCode}
@@ -80,3 +35,17 @@ const FeaturedProducts = () => {
 };
 
 export default FeaturedProducts;
+
+export const loader = async () => {
+  const data = store.dispatch(
+    productsApi.endpoints.getFeaturedProducts.initiate()
+  );
+  try {
+    const response = await data.unwrap();
+    return response;
+  } catch (e) {
+    return json({ message: "Could not fetch products" }, { status: 500 });
+  } finally {
+    data.unsubscribe();
+  }
+};

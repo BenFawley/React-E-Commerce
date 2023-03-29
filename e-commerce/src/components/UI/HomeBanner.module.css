@@ -53,8 +53,16 @@
   text-decoration: none;
   padding: 10px 20px;
   border: 2px solid #0181ee;
-  color: #0181ee;
+  color: white;
   font-weight: bold;
+  background: #0181ee;
+  transition: 0.25s ease-in-out;
+}
+
+.bannerCTA:hover {
+  border: 2px solid #0181ee;
+  color: #0181ee;
+  background: white;
 }
 
 @media screen and (max-width: 800px) {

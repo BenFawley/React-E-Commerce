@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, json } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cartSlice";
 import { useState } from "react";
 import { uiAction } from "../../store/uiSlice";
+import store from "../../store/redux.js";
+import { productsApi } from "../../store/apiSlice.js";
 
 const ProductDetails = () => {
   let { productId } = useParams();
@@ -14,15 +16,7 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [active, setActive] = useState(false);
 
-  const {
-    isLoading,
-    data: product,
-    error,
-  } = useGetProductDetailsQuery(productId);
-
-  if (isLoading) {
-    return <p className={classes.loading}>Loading...</p>;
-  }
+  const { data: product } = useGetProductDetailsQuery(productId);
 
   const removeTags = (str) => {
     if (str === null || str === "") return false;
@@ -117,7 +111,7 @@ const ProductDetails = () => {
           content={removeTags(product.description)}
         />
         <Accordion
-          title="About Me"
+          title="More Information"
           content={removeTags(product.info.aboutMe)}
         />
 
@@ -133,3 +127,19 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+export const loader = async ({ params }) => {
+  const id = params.productId;
+
+  const data = store.dispatch(
+    productsApi.endpoints.getProductDetails.initiate(id)
+  );
+  try {
+    const response = await data.unwrap();
+    return response;
+  } catch (e) {
+    return json({ message: "Could not fetch products" }, { status: 500 });
+  } finally {
+    data.unsubscribe();
+  }
+};

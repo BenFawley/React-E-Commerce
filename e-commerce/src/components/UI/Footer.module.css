@@ -1,12 +1,46 @@
 .footer {
-  background: #efedee;
-  height: 100px;
-  position: absolute;
+  position: relative;
   bottom: 0;
-  width: 100%;
   right: 0;
   left: 0;
-  top: 100%;
   margin-top: 60px;
   background: #232323;
+  padding: 50px 20px;
+}
+
+.footerLogo {
+  flex-basis: 30%;
+}
+
+.footerLogo h1 {
+  color: #fff;
+  font-size: 30px;
+}
+.footerLogo span {
+  color: #0181ee;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  max-width: 1270px;
+  margin: 0 auto;
+}
+
+.footerContent ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+.footerContent li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.footerLinksWrapper {
+  flex-basis: 68%;
+  display: flex;
+  justify-content: space-between;
 }

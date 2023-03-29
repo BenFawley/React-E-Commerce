@@ -1,33 +1,15 @@
 import classes from "./Category.module.css";
-import { useParams } from "react-router-dom";
 import Product from "./Product";
 import { useGetCategoryProductsQuery } from "../../store/apiSlice";
-import LoadingSpinner from "../UI/LoadingSpinner";
+import store from "../../store/redux.js";
+import { productsApi } from "../../store/apiSlice.js";
+import { json, useParams } from "react-router-dom";
 
 const Category = () => {
-  let { categoryId } = useParams();
+  const { categoryId } = useParams();
+  const { data: productList } = useGetCategoryProductsQuery(categoryId);
 
-  const {
-    isLoading,
-    data: productList,
-    error,
-  } = useGetCategoryProductsQuery(categoryId);
-
-  if (isLoading) {
-    return (
-      <div className={classes.centered}>
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={classes.centered}>
-        <p>{error}</p>
-      </div>
-    );
-  }
+  console.log(productList);
 
   return (
     <div className={classes.productList}>
@@ -45,7 +27,6 @@ const Category = () => {
                   price={product.price.current.value}
                   imgSrc={product.imageUrl}
                   colour={product.colour && product.colour}
-                  category={categoryId}
                 />
               );
             })}
@@ -57,3 +38,19 @@ const Category = () => {
 };
 
 export default Category;
+
+export const loader = async ({ params }) => {
+  const id = params.categoryId;
+
+  const data = store.dispatch(
+    productsApi.endpoints.getCategoryProducts.initiate(id)
+  );
+  try {
+    const response = await data.unwrap();
+    return response;
+  } catch (e) {
+    return json({ message: "Could not fetch products" }, { status: 500 });
+  } finally {
+    data.unsubscribe();
+  }
+};
