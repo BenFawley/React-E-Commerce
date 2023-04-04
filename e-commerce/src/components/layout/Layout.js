@@ -11,9 +11,7 @@ const Layout = () => {
     <>
       <Header />
       {showCart && <Cart className="active" />}
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </>
   );

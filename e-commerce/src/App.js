@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Error from "./pages/Error.js";
 import { loader as featuredProductsLoader } from "./components/UI/FeaturedProducts";
 import { loader as productDetailsLoader } from "./components/Products/ProductDetails";
-import { loader as categoryLoader } from "./components/Products/ProductDetails";
+import { loader as categoryLoader } from "./components/Products/Category";
 //React Router V6.4 upgrade
 
 const router = createBrowserRouter([
@@ -21,7 +21,11 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: featuredProductsLoader,
       },
-      { path: ":categoryId", element: <ProductList />, loader: categoryLoader },
+      {
+        path: ":categoryId",
+        element: <ProductList />,
+        loader: categoryLoader,
+      },
       {
         path: "product/:productId",
         element: <Product />,

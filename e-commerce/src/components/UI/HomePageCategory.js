@@ -5,7 +5,7 @@ const HomePageCategory = ({ id, name, src, styleName }) => {
   return (
     <div className={`${classes[styleName]}`}>
       <Link to={`/${id}`}>
-        <img src={src} alt="Category item" />
+        <img src={src} alt="Category item" loading="lazy" />
         <h2>{name}</h2>
       </Link>
     </div>

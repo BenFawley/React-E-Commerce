@@ -1,46 +1,55 @@
 import classes from "./Category.module.css";
 import Product from "./Product";
-import { useGetCategoryProductsQuery } from "../../store/apiSlice";
 import store from "../../store/redux.js";
 import { productsApi } from "../../store/apiSlice.js";
-import { json, useParams } from "react-router-dom";
+import { json, defer, useLoaderData, Await } from "react-router-dom";
+import Siderbar from "../UI/Siderbar";
+import { Suspense } from "react";
 
 const Category = () => {
-  const { categoryId } = useParams();
-  const { data: productList } = useGetCategoryProductsQuery(categoryId);
-
-  console.log(productList);
+  // const { categoryId } = useParams();
+  // const { data } = useGetCategoryProductsQuery(categoryId);
+  const { data } = useLoaderData();
 
   return (
-    <div className={classes.productList}>
-      {productList && (
-        <div className={classes.productList}>
-          <h1>{productList.categoryName}</h1>
-          <ul>
-            {productList.products.map((product) => {
-              return (
-                <Product
-                  key={product.productCode}
-                  id={product.id}
-                  name={product.name}
-                  description={product.name}
-                  price={product.price.current.value}
-                  imgSrc={product.imageUrl}
-                  colour={product.colour && product.colour}
-                />
-              );
-            })}
-          </ul>
-        </div>
-      )}
-    </div>
+    <Suspense fallback={<p className="centered">Loading...</p>}>
+      <Await resolve={data}>
+        {(data) => {
+          return (
+            <div className={classes.categoryWrapper}>
+              <h1>{data && data.name}</h1>
+              {data && (
+                <div className={classes.productList}>
+                  <Siderbar />
+                  <ul>
+                    {data.products.map((product) => {
+                      return (
+                        <Product
+                          key={product.productCode}
+                          id={product.id}
+                          name={product.name}
+                          description={product.name}
+                          price={product.price.current.value}
+                          imgSrc={product.imageUrl}
+                          colour={product.colour && product.colour}
+                        />
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          );
+        }}
+      </Await>
+    </Suspense>
   );
 };
 
 export default Category;
 
-export const loader = async ({ params }) => {
-  const id = params.categoryId;
+const loadCategoryPage = async (categoryId) => {
+  const id = categoryId;
 
   const data = store.dispatch(
     productsApi.endpoints.getCategoryProducts.initiate(id)
@@ -53,4 +62,10 @@ export const loader = async ({ params }) => {
   } finally {
     data.unsubscribe();
   }
+};
+
+export const loader = ({ params }) => {
+  return defer({
+    data: loadCategoryPage(params.categoryId),
+  });
 };

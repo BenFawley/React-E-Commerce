@@ -1,22 +1,24 @@
-import { useParams, json } from "react-router-dom";
+import { useParams, json, defer, Await, useLoaderData } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cartSlice";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { uiAction } from "../../store/uiSlice";
 import store from "../../store/redux.js";
 import { productsApi } from "../../store/apiSlice.js";
 
 const ProductDetails = () => {
-  let { productId } = useParams();
+  // let { productId } = useParams();
   const dispatch = useDispatch();
   const [sizeError, setSizeError] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [active, setActive] = useState(false);
 
-  const { data: product } = useGetProductDetailsQuery(productId);
+  // const { data: product } = useGetProductDetailsQuery(productId);
+  let product = useLoaderData();
+
+  product = product.data;
 
   const removeTags = (str) => {
     if (str === null || str === "") return false;
@@ -53,83 +55,98 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className={classes.productWrapper}>
-      <div className={classes.galleryWrapper}>
-        <div className={classes.smallGallery}>
-          {/* add gallery component */}
-          {product.media.images.map((image, idx) => {
-            return (
-              <img
-                className={classes.imgSmall}
-                key={idx}
-                src={`https://${image.url}`}
-                alt="product.name"
-              />
-            );
-          })}
-        </div>
-        <div className={classes.largeGallery}>
-          {product.media.images.map((image, idx) => {
-            return (
-              <img
-                className={classes.imgBig}
-                key={idx}
-                src={`https://${image.url}`}
-                alt="product.name"
-              />
-            );
-          })}
-        </div>
-      </div>
-      <div className={classes.productDetails}>
-        <h1 className={classes.productName}>{product.name}</h1>
-        <p className={classes.price}>£{product.price.current.value}</p>
-        {product.variants.length > 1 && <h3>Size:</h3>}
-        <div className={classes.sizeOptions}>
-          {product.variants.length > 1 &&
-            product.variants.map((option) => {
-              return (
-                <div
-                  key={option.brandSize}
-                  className={`${classes.size} ${
-                    selectedSize === option.brandSize ? classes.active : ""
-                  }`}
-                  onClick={handleSizeSelection}
-                  data-size={option.brandSize}
-                >
-                  {option.brandSize}
+    <Suspense fallback={<p className="centered">Loading...</p>}>
+      <Await resolve={product}>
+        {(product) => {
+          return (
+            <div className={classes.productWrapper}>
+              <div className={classes.galleryWrapper}>
+                <div className={classes.smallGallery}>
+                  {/* add gallery component */}
+                  {product.media.images.map((image, idx) => {
+                    return (
+                      <img
+                        className={classes.imgSmall}
+                        key={idx}
+                        src={`https://${image.url}`}
+                        alt="product.name"
+                      />
+                    );
+                  })}
                 </div>
-              );
-            })}
-        </div>
-        {sizeError && <p className={classes.error}>Please select a size</p>}
-        <button className={classes.addToCart} onClick={addToCartHandler}>
-          Add to Cart
-        </button>
-        <Accordion
-          title="Description"
-          content={removeTags(product.description)}
-        />
-        <Accordion
-          title="More Information"
-          content={removeTags(product.info.aboutMe)}
-        />
+                <div className={classes.largeGallery}>
+                  {product.media.images.map((image, idx) => {
+                    return (
+                      <img
+                        className={classes.imgBig}
+                        key={idx}
+                        src={`https://${image.url}`}
+                        alt="product.name"
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className={classes.productDetails}>
+                <h1 className={classes.productName}>{product.name}</h1>
+                <p className={classes.price}>£{product.price.current.value}</p>
+                {product.variants.length > 1 && <h3>Size:</h3>}
+                <div className={classes.sizeOptions}>
+                  {product.variants.length > 1 &&
+                    product.variants.map((option) => {
+                      return (
+                        <div
+                          key={option.brandSize}
+                          className={`${classes.size} ${
+                            selectedSize === option.brandSize
+                              ? classes.active
+                              : ""
+                          }`}
+                          onClick={handleSizeSelection}
+                          data-size={option.brandSize}
+                        >
+                          {option.brandSize}
+                        </div>
+                      );
+                    })}
+                </div>
+                {sizeError && (
+                  <p className={classes.error}>Please select a size</p>
+                )}
+                <button
+                  className={classes.addToCart}
+                  onClick={addToCartHandler}
+                >
+                  Add to Cart
+                </button>
+                <Accordion
+                  title="Description"
+                  content={removeTags(product.description)}
+                />
+                <Accordion
+                  title="More Information"
+                  content={removeTags(product.info.aboutMe)}
+                />
 
-        {product.info.sizeAndFit && (
-          <Accordion
-            title="Size & Fit"
-            content={removeTags(product.info.sizeAndFit)}
-          />
-        )}
-      </div>
-    </div>
+                {product.info.sizeAndFit && (
+                  <Accordion
+                    title="Size & Fit"
+                    content={removeTags(product.info.sizeAndFit)}
+                  />
+                )}
+              </div>
+            </div>
+          );
+        }}
+      </Await>
+    </Suspense>
   );
 };
 
 export default ProductDetails;
 
-export const loader = async ({ params }) => {
-  const id = params.productId;
+const loadProductDetails = async (productId) => {
+  const id = productId;
 
   const data = store.dispatch(
     productsApi.endpoints.getProductDetails.initiate(id)
@@ -142,4 +159,10 @@ export const loader = async ({ params }) => {
   } finally {
     data.unsubscribe();
   }
+};
+
+export const loader = ({ params }) => {
+  return defer({
+    data: loadProductDetails(params.productId),
+  });
 };

@@ -3,8 +3,10 @@
 }
 
 .productList {
-  max-width: 1600px;
+  max-width: 1360px;
   margin: 0 auto;
+  display: flex;
+  padding: 0 20px;
 }
 
 .productList ul {
@@ -13,7 +15,10 @@
   list-style: none;
   justify-content: center;
   gap: 1%;
-  padding: 0 20px;
+  flex-basis: 90%;
+  padding: 0;
+  margin-left: 1%;
+  height: 100%;
 }
 
 .centered {
@@ -22,4 +27,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.categoryWrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.categoryWrapper h1 {
+  padding: 0 20px;
+  margin: 30px 0;
 }
