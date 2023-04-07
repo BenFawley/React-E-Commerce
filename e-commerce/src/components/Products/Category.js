@@ -3,8 +3,9 @@ import Product from "./Product";
 import store from "../../store/redux.js";
 import { productsApi } from "../../store/apiSlice.js";
 import { json, defer, useLoaderData, Await } from "react-router-dom";
-import Siderbar from "../UI/Siderbar";
+// import Siderbar from "../UI/Siderbar";
 import { Suspense } from "react";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Category = () => {
   // const { categoryId } = useParams();
@@ -12,7 +13,7 @@ const Category = () => {
   const { data } = useLoaderData();
 
   return (
-    <Suspense fallback={<p className="centered">Loading...</p>}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Await resolve={data}>
         {(data) => {
           return (
@@ -20,7 +21,7 @@ const Category = () => {
               <h1>{data && data.name}</h1>
               {data && (
                 <div className={classes.productList}>
-                  <Siderbar />
+                  {/* <Siderbar /> */}
                   <ul>
                     {data.products.map((product) => {
                       return (

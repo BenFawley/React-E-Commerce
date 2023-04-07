@@ -1,19 +1,23 @@
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  height: 100vh;
+}
+
 .spinner {
-  display: inline-block;
+  float: left;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: rgba(0, 0, 0, 0.1);
+  border-left-color: #0181ee;
+  margin: 2rem 3rem;
+  border-radius: 50%;
   width: 80px;
   height: 80px;
+  animation: spinner 1.5s linear infinite;
 }
-.spinner:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #0098db;
-  border-color: #0098db transparent #0098db transparent;
-  animation: spinner 1.2s linear infinite;
-}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

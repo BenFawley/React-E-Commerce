@@ -1,4 +1,4 @@
-import { useParams, json, defer, Await, useLoaderData } from "react-router-dom";
+import { json, defer, Await, useLoaderData, useParams } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../store/apiSlice";
 import classes from "./ProductDetails.module.css";
 import Accordion from "../UI/Accordion";
@@ -8,17 +8,19 @@ import { useState, Suspense } from "react";
 import { uiAction } from "../../store/uiSlice";
 import store from "../../store/redux.js";
 import { productsApi } from "../../store/apiSlice.js";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const ProductDetails = () => {
-  // let { productId } = useParams();
+  let { productId } = useParams();
   const dispatch = useDispatch();
   const [sizeError, setSizeError] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  // const { data: product } = useGetProductDetailsQuery(productId);
-  let product = useLoaderData();
+  const { data: product } = useGetProductDetailsQuery(productId);
 
-  product = product.data;
+  let data = useLoaderData();
+
+  data = data.data;
 
   const removeTags = (str) => {
     if (str === null || str === "") return false;
@@ -55,8 +57,8 @@ const ProductDetails = () => {
   };
 
   return (
-    <Suspense fallback={<p className="centered">Loading...</p>}>
-      <Await resolve={product}>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Await resolve={data}>
         {(product) => {
           return (
             <div className={classes.productWrapper}>
@@ -69,7 +71,7 @@ const ProductDetails = () => {
                         className={classes.imgSmall}
                         key={idx}
                         src={`https://${image.url}`}
-                        alt="product.name"
+                        alt={product.name}
                       />
                     );
                   })}
@@ -81,7 +83,7 @@ const ProductDetails = () => {
                         className={classes.imgBig}
                         key={idx}
                         src={`https://${image.url}`}
-                        alt="product.name"
+                        alt={product.name}
                       />
                     );
                   })}
