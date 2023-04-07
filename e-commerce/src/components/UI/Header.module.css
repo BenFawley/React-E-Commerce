@@ -54,6 +54,12 @@
 
 .cartWrapper {
   position: relative;
+  display: flex;
+}
+
+.cartWrapper img {
+  max-width: 100%;
+  width: 34px !important;
 }
 
 .quantity {
@@ -79,4 +85,16 @@
 }
 .logo span {
   color: #0181ee;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconWrapper img {
+  max-width: 100%;
+  width: 30px;
 }

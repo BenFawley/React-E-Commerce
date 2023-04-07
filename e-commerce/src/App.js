@@ -7,6 +7,7 @@ import Error from "./pages/Error.js";
 import { loader as featuredProductsLoader } from "./components/UI/FeaturedProducts";
 import { loader as productDetailsLoader } from "./components/Products/ProductDetails";
 import { loader as categoryLoader } from "./components/Products/Category";
+import Checkout from "./pages/Checkout.js";
 //React Router V6.4 upgrade
 
 const router = createBrowserRouter([
@@ -31,15 +32,17 @@ const router = createBrowserRouter([
         element: <Product />,
         loader: productDetailsLoader,
       },
+      {
+        path: "checkout",
+        element: <Checkout />,
+        // loader: productDetailsLoader,
+      },
     ],
   },
 ]);
 
 const App = () => {
-  return (
-    //React Router V6.4 upgrade
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

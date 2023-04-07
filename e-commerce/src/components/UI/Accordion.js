@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Accordion.module.css";
 
 const Accordion = ({ title, content }) => {
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (title === "Description") {
+      setActive(true);
+    }
+  }, []);
 
   const toggleAccordion = () => {
     setActive(!active);

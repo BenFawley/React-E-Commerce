@@ -1,9 +1,10 @@
 .spinnerWrapper {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: column;
   height: 100vh;
+  transform: translateY(-10%);
 }
 
 .spinner {

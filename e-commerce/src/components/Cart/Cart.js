@@ -7,8 +7,9 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { uiAction } from "../../store/uiSlice";
 import { cartActions } from "../../store/cartSlice";
+import { Link } from "react-router-dom";
 
-const Cart = (props) => {
+const Cart = () => {
   const [showCart, setShowCart] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -68,9 +69,9 @@ const Cart = (props) => {
             <p className={classes.clearCart} onClick={clearCartHandler}>
               Clear cart
             </p>
-            <button type="button" className={classes.checkout}>
+            <Link to={"checkout"} className={classes.checkout}>
               Checkout
-            </button>
+            </Link>
           </div>
         </>
       )}

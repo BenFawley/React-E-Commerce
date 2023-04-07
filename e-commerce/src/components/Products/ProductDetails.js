@@ -59,7 +59,7 @@ const ProductDetails = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <Await resolve={data}>
-        {(product) => {
+        {() => {
           return (
             <div className={classes.productWrapper}>
               <div className={classes.galleryWrapper}>

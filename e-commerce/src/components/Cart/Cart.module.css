@@ -7,7 +7,7 @@
 }
 .active {
   transform: translateY(0) !important;
-  z-index: 5;
+  z-index: 5000;
 }
 
 .cartHeader {
@@ -54,6 +54,7 @@
   border-radius: 10px;
   text-transform: uppercase;
   transition: all 0.3s;
+  text-decoration: none;
 }
 
 .checkout:hover {

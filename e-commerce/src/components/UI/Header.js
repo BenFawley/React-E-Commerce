@@ -1,10 +1,12 @@
 import classes from "./Header.module.css";
 import { NavLink, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { uiAction } from "../../store/uiSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import CartIcon from "../../images/cart-svgrepo-com.svg";
+import Search from "../../images/search-magnifying-glass-svgrepo-com.svg";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -69,8 +71,9 @@ const Header = () => {
           </ul>
         </nav>
         <div className={classes.iconWrapper}>
+          <img src={Search} alt="Search" />
           <div className={classes.cartWrapper} onClick={toggleCartHandler}>
-            <FontAwesomeIcon icon={faShoppingBag} size="xl" />
+            <img src={CartIcon} alt="Cart Icon" />
             {cartQuantity > 0 && (
               <span className={classes.quantity}>{cartQuantity}</span>
             )}
