@@ -65,8 +65,34 @@
   background: white;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .homebanner {
     display: block;
+    padding: 30px 0 40px;
+    height: auto;
+
+  }
+  .bannerModel{
+    display: none;
+  }
+  .bannerTextWrapper{
+    top: unset;
+    left: unset;
+    transform: unset;
+    -webkit-transform: unset;
+    height: auto;
+    position: relative;
+  }
+  .bannerText{
+    max-width: unset;
+    top: unset;
+  }
+
+  .bannerText h1{
+    font-size: 6vw;
+  }
+
+  .bannerText p{
+    margin-bottom: 30px;
   }
 }

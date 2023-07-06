@@ -98,3 +98,45 @@
   max-width: 100%;
   width: 30px;
 }
+
+.menuIcon, .closeMenu{
+  display: none;
+}
+
+.hideIcon{
+  display: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .menuIcon, .closeMenu{
+    display: block;
+  }
+  .header{
+    height: auto;
+  }
+  .headerContent{
+    flex-direction: column;
+  }
+  .categoryList{
+    flex-direction: column;
+  }
+  .navWrapper, .iconWrapper{
+    display: none;
+    padding: 20px 0;
+  }
+
+  .navWrapper{
+    height: 100vh;
+    background-color: #fff;
+    align-items: flex-start;
+  }
+  .showMenu{
+    display: flex;
+  }
+  .menuIcon, .closeMenu{
+    position: absolute;
+    right: 5%;
+    top: 25px;
+  }
+}

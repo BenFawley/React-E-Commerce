@@ -106,3 +106,18 @@
 .loading {
   text-align: center;
 }
+@media only screen and (max-width: 600px) {
+  .productWrapper{
+    flex-direction: column;
+  }
+  .smallGallery{
+    display: none;
+  }
+  .largeGallery{
+    width: 100%;
+  }
+  .productDetails{
+    width: auto;
+    padding: 20px;
+  }
+}

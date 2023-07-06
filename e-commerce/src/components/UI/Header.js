@@ -2,18 +2,25 @@ import classes from "./Header.module.css";
 import { NavLink, Link } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 import { uiAction } from "../../store/uiSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import CartIcon from "../../images/cart-svgrepo-com.svg";
 import Search from "../../images/search-magnifying-glass-svgrepo-com.svg";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
+  const [isClosed, setIsClosed] = useState(false);
   const dispatch = useDispatch();
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const toggleCartHandler = () => {
     dispatch(uiAction.toggle());
   };
+
+  const toggleMenu = () => {
+    setIsClosed((prevState) => !prevState);
+  }
 
   return (
     <header className={classes.header}>
@@ -25,7 +32,7 @@ const Header = () => {
             </h1>
           </Link>
         </div>
-        <nav className={classes.navWrapper}>
+        <nav className={`${classes.navWrapper} ${isClosed ? classes.showMenu : ""}`}>
           <ul className={classes.categoryList}>
             <li>
               <NavLink
@@ -79,6 +86,7 @@ const Header = () => {
             )}
           </div>
         </div>
+        {isClosed ? <X onClick={toggleMenu} className={`${classes.closeMenu}`} /> : <Menu onClick={toggleMenu} className={classes.menuIcon} />}
       </div>
     </header>
   );
